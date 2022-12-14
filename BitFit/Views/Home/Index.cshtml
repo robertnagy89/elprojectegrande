@@ -1,8 +1,66 @@
-﻿@{
+﻿@model List<Food>
+
+@{
     ViewData["Title"] = "Home Page";
 }
+<div class="leftBar">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<div class="modelContainer">
+    <h1 class="display-4">Welcome To Biceps.Core</h1>
+    <p>Many Thanks to <a href="https://calorieninjas.com/api">CalorieNinja</a> for dilligently collecting all that sweet nutritional data.</p>
+    <h1 class="sampleData"> Sample Data of what you can expect!</h1>
+    <div class="foodCard">
+    @foreach (var item in Model)
+    {
+        <div class="foodvenn">
+                <pre class="mermaid">
+            pie showData
+        title : @item.Name
+        "Protein" : @item.Protein
+        "Sugar" : @item.Sugar
+        "Fiber" : @item.Fiber
+        "Fats" :  @item.FatTotal
+        
+        </pre>
+
+        </div>
+    }
+    </div>
+    <div class="gantt">
+    <pre class="mermaid">
+gantt
+    title This Weeks ChangeLog
+    dateFormat  YYYY-MM-DD
+    axisFormat  %Y-%m-%d
+    Initial milestone : milestone, m1, 2022-12-12, 60m
+
+    section Documentation
+    Setup Default Task Tracking :a1, 2022-12-12, 160m
+    Add Issues     :a2, 2022-12-13, 210m
+
+    section Backend
+    Add Default MvC .Net Application :2022-12-13, 160m
+    Add Index Page    : 2022-12-14  , 110m
+    Add Foods Page    : 140m
+    Add Recipes Page  : 220m
+
+    section Frontend
+    Example Task      : 2022-12-14  , 110m
+    another task      : 11m
+
+    section Other
+    BrainStorming Session   : 2022-12-12  , 240m
+    Searching for Nutritional Api    : 110m
+
+    Final milestone : milestone, m2, 2022-12-16, 12m
+    </pre>
+    <script type="module">
+      import mermaid from 'https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    </div>
+    </div>
+
+<div class="rightBar"></div>
