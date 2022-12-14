@@ -1,0 +1,20 @@
+﻿@model List<BitFit.Models.Recipe>
+
+@{
+    ViewData["Title"] = "Recipe";
+}
+<h2>Recipes:</h2>
+<div class="card">
+@foreach (var item in Model)
+             {
+                 <div class="card-header">@item.Name</div>
+                 <div class="card-body">
+                     <ul>
+                         <li style="font-size: 12px">@item.OverallCalories</li>
+                         <li style="font-size: 12px">Sugar: @item.OverallSugar</li>
+                         <li style="font-size: 12px">Fat: @item.OverallFat</li>
+                         <li style="font-size: 12px">Carbohydrates: @item.OverallCarbohydrates</li>
+                     </ul>
+                 </div>
+             }
+</div>
