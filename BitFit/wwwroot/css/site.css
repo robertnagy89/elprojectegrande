@@ -16,3 +16,24 @@ html {
 body {
   margin-bottom: 60px;
 }
+aside {
+    width: 15%;
+    float: left;
+}
+
+.nav-card {
+    text-align: center;
+    font-size: 30px;
+    margin: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    background-color: lightskyblue;
+    margin-inline: 10px;
+
+}
