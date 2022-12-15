@@ -7,13 +7,12 @@
 <div class="card">
 @foreach (var item in Model)
              {
-                 <div class="card-header">@item.Name</div>
+                 <div class="card-header">@item.Title</div>
                  <div class="card-body">
                      <ul>
-                         <li style="font-size: 12px">@item.OverallCalories</li>
-                         <li style="font-size: 12px">Sugar: @item.OverallSugar</li>
-                         <li style="font-size: 12px">Fat: @item.OverallFat</li>
-                         <li style="font-size: 12px">Carbohydrates: @item.OverallCarbohydrates</li>
+                         <li style="font-size: 12px">@item.Ingredients</li>
+                         <li style="font-size: 12px">@item.Servings</li>
+                         <li style="font-size: 12px">@item.Instructions</li>
                      </ul>
                  </div>
              }

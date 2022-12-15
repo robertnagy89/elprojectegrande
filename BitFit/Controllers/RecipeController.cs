@@ -1,5 +1,6 @@
 ﻿using BitFit.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace BitFit.Controllers
@@ -13,9 +14,26 @@ namespace BitFit.Controllers
             _logger = logger;
         }
 
-        public IActionResult Recipes()
+        public async Task<IActionResult> RecipesAsync()
         {
-            return View();
+            var query = "mushroom risotto";
+            var client = new HttpClient();
+            var request = new HttpRequestMessage
+            {
+
+                Method = HttpMethod.Get, 
+                RequestUri= new Uri("https://api.calorieninjas.com/v1/recipe?query=mushroom_risotto"),
+                Headers =
+                {
+                    { "X-Api-Key", "rjMn+tsZm073LSFbqMeumg==ItLY0mBRQJjLEYno" },
+                },
+            };
+            using var response = await client.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            var deSerialized = JsonConvert.DeserializeObject<IRecipe>(responseBody);
+            return View(deSerialized.AllRecipes);
         }
 
 

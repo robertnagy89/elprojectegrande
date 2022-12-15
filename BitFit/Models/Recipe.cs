@@ -1,22 +1,24 @@
-﻿namespace BitFit.Models
+﻿using System.Text.Json.Serialization;
+
+namespace BitFit.Models
 {
     public class Recipe
     {
-        public string Name { get; set; }
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
+        [JsonPropertyName("ingredients")]
         public List<Food>? Ingredients { get; set; }
-        public double OverallCalories { get; set; }        
-        public double OverallSugar { get; set; }        
-        public double OverallFat { get; set; }   
-        public double OverallCarbohydrates { get; set; }
+        [JsonPropertyName("servings")]
+        public string Servings { get; set; }
+        [JsonPropertyName("instructions")]
+        public string Instructions { get; set; }
 
-        public Recipe(string name, List<Food>? ingredients, double overallCalories, double overallSugar, double overallFat, double overallCarbohydrates)
+        public Recipe(string title, List<Food>? ingredients, string servings, string instructions)
         {
-            Name = name;
+            Title = title;
             Ingredients = ingredients;
-            OverallCalories = overallCalories;
-            OverallSugar = overallSugar;
-            OverallFat = overallFat;
-            OverallCarbohydrates = overallCarbohydrates;
+            Servings = servings;
+            Instructions = instructions;
         }
     }
 }
