@@ -60,7 +60,7 @@ aside {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 20vw;
+    width: 16vw;
     word-wrap: break-word;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
@@ -68,4 +68,10 @@ aside {
     background-color: lightskyblue;
     margin-inline: 10px;
 
+}
+
+.inactive-link {
+    pointer-events: none;
+    cursor: default;
+    background-color: gray;
 }
