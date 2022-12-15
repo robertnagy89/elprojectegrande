@@ -26,19 +26,18 @@ body {
     border-radius: 10px;
 }
 
-.foodContainer{
+.foodContainer {
     width: 95%;
     justify-content: space-evenly;
     display: flex;
 }
 
 .foodCard {
-    width: 20%;
+    min-width: 20%;
     background-color: lightgray;
     border-radius: 10px;
     border: 6px groove darkgrey;
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
-    text-align: justify;
 }
 
 .shoutOut { 
