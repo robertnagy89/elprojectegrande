@@ -8,24 +8,34 @@
 </div>
 
 <div class="modelContainer">
-    <h1 class="display-4">Welcome To Biceps.Core</h1>
+    <h1>Welcome To Biceps.Core</h1><br>
     <p>Many Thanks to <a href="https://calorieninjas.com/api">CalorieNinja</a> for dilligently collecting all that sweet nutritional data.</p>
     <h1 class="sampleData"> Sample Data of what you can expect!</h1>
+    <br>
+
+    <h2 class="shoutOut">Nutritional Venn Diagrams!</h2>
+    <br>
+
     <div class="foodContainer">
     @foreach (var item in Model)
     {
         <div class="foodCard">
                 <pre class="mermaid">
-            pie showData
-        title : @item.Name
-        "Protein" : @item.Protein
-        "Sugar" : @item.Sugar
-        "Fiber" : @item.Fiber
-        "Fats" :  @item.FatTotal
+        pie 
+            title  @item.Name
+
+            "Protein" : @item.Protein
+            "Sugar" : @item.Sugar
+            "Fiber" : @item.Fiber
+            "Fats" :  @item.FatTotal
         </pre>
         </div>
     }
     </div>
+    <br>
+    <h2 class="shoutOut">Activity Tracking In Gantt!</h2>
+    <br>
+
     <div class="gantt">
     <pre class="mermaid">
 gantt
