@@ -16,10 +16,13 @@
     <h2 class="shoutOut">Nutritional Pie Diagrams!</h2>
     <p>Get a quick overview on the selected foods with the main nutritional in a pie chart.</p>
     <br>
-    <div class="foodContainer">
-        <div class="legend">
-            
+    <div class="legend">
+            <div style="background-color:rgb(236, 236, 255)">Protein</div>
+            <div style="background-color:rgb(255, 255, 222)">Sugar</div>
+            <div style="background-color:rgb(181, 255, 32)">Fiber</div>
+            <div style="background-color:rgb(185, 185, 255)">Fat</div>
         </div>
+    <div class="foodContainer">
     @foreach (var item in Model)
     {
         <div class="foodCard">
@@ -31,7 +34,7 @@
                 "Fiber" : @item.Fiber.ToString().Replace(",", ".")
                 "Fats" :  @item.FatTotal.ToString().Replace(",", ".")
         </pre>
-        <div class="healthRating">HealthRating: </div>
+        <div class="healthRating">HealthRating: @Math.Floor(item.Fiber+@item.Protein - @item.Sugar - @item.FatTotal)</div>
         </div>
     }
     </div>

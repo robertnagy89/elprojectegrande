@@ -34,6 +34,7 @@ body {
 
 .foodCard {
     min-width: 20%;
+    width: 30%;
     background-color: lightgray;
     border-radius: 10px;
     border: 6px groove darkgrey;
@@ -43,4 +44,9 @@ body {
 .shoutOut { 
     background-color: lightslategrey;
     box-shadow: 5px 15px 10px rgba(0, 0, 0, 0.4);
+}
+
+.legend{
+    display:inline-flex;
+
 }
