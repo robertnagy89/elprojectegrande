@@ -1,0 +1,61 @@
+﻿@model List<Food>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<p>@Model</p>
+@foreach (var item in Model)
+{
+    <p>@item</p>
+}
+<h3>
+    <label for="searchBar">
+        Search food by name 
+    </label>
+
+    <input type="text" />
+</h3>
+
+<div class="foodCard">
+    <table class="table">
+        <tr class="navbar-dark">
+                <td>
+                        Name
+                </td>
+                <td>
+                        Protein
+                </td>
+                    <td>
+                        Sugar
+                    </td>
+                    <td>
+                        Fiber
+                </td>
+                <td>
+                        FatTotal
+                </td>
+            </tr>
+    @foreach (var item in Model)
+    {       
+          <tr>
+              <td>
+                    title :   @item.Name
+              </td>
+              <td>
+                    @item.Protein
+              </td>
+              <td>
+                    @item.Sugar
+              </td>
+              <td>
+                  @item.Fiber
+              </td>
+              <td>
+                    @item.FatTotal
+              </td>
+          </tr>      
+    }
+     </table>
+    </div>
