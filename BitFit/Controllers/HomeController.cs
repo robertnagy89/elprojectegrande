@@ -1,5 +1,6 @@
 ﻿using BitFit.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace BitFit.Controllers
@@ -13,9 +14,14 @@ namespace BitFit.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            return View();
+            var url = "https://getpantry.cloud/apiv1/pantry/1899cfa8-43b1-4e43-a87a-7e5385f2def1/basket/foods";
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(url);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            var deSerialized = JsonConvert.DeserializeObject<IFood>(responseBody);
+            return View(deSerialized.AllFoods);
         }
 
         public IActionResult Privacy()
