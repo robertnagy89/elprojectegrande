@@ -16,3 +16,62 @@ html {
 body {
   margin-bottom: 60px;
 }
+/* Index Specific Style */
+
+.modelContainer{
+    width: 95%;
+    background-color: lightsteelblue;
+    position: relative;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.foodContainer {
+    width: 95%;
+    justify-content: space-evenly;
+    display: flex;
+}
+
+.foodCard {
+    min-width: 20%;
+    width: 30%;
+    background-color: lightgray;
+    border-radius: 10px;
+    border: 6px groove darkgrey;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.shoutOut { 
+    background-color: lightslategrey;
+    box-shadow: 5px 15px 10px rgba(0, 0, 0, 0.4);
+}
+.legend{
+    display:inline-flex;
+}
+aside {
+    width: 15%;
+    float: left;
+}
+
+.nav-card {
+    text-align: center;
+    font-size: 30px;
+    margin: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 16vw;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    background-color: lightskyblue;
+    margin-inline: 10px;
+
+}
+
+.inactive-link {
+    pointer-events: none;
+    cursor: default;
+    background-color: gray;
+}
