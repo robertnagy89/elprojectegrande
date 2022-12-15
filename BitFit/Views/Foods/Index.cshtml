@@ -1,24 +1,30 @@
 ﻿@model List<Food>
+
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    
 *@
 @{
+  
+    
 }
 
-<p>@Model</p>
-@foreach (var item in Model)
-{
-    <p>@item</p>
-}
+
+
 <h3>
-    <label for="searchBar">
-        Search food by name 
-    </label>
-
-    <input type="text" />
+    
+   
+    <form method="post" asp-controller="Foods" asp-action="NewSearch">
+        <label for="SearchBar" class="mb-5 mt-5">
+            Search food by name:
+        </label>
+        <input id="SearchBar" name="SearchBar" type="text" class="form-control" />
+        <input  type="submit" hidden />
+    </form>
+    
 </h3>
 
-<div class="foodCard">
+<div class="foodCard mt-5">
     <table class="table">
         <tr class="navbar-dark">
                 <td>
@@ -41,19 +47,19 @@
     {       
           <tr>
               <td>
-                    title :   @item.Name
+                    @item.Name
               </td>
               <td>
-                    @item.Protein
+                    @item.Protein g
               </td>
               <td>
-                    @item.Sugar
+                    @item.Sugar g
               </td>
               <td>
-                  @item.Fiber
+                  @item.Fiber g
               </td>
               <td>
-                    @item.FatTotal
+                    @item.FatTotal g
               </td>
           </tr>      
     }

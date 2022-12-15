@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Dynamic;
+
 
 namespace BitFit.Controllers
 {
@@ -18,13 +20,15 @@ namespace BitFit.Controllers
         //{
         //    return View();
         //}
-        public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> IndexAsync(string searchText=null)
         {
+            
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
+
                 Method = HttpMethod.Get,
-                RequestUri = new Uri("https://api.calorieninjas.com/v1/nutrition?query=banana"),
+                RequestUri = new Uri($"https://api.calorieninjas.com/v1/nutrition?query={searchText}"),
                 Headers =
             {
                 { "X-Api-Key", "Psij6QAOOFNwBBxyV91U4w==n1GEtDahReZRqJfI" },
@@ -36,13 +40,27 @@ namespace BitFit.Controllers
                 var responseBody = await response.Content.ReadAsStringAsync();
                 
                 var deSerialized = JsonConvert.DeserializeObject<IFood>(responseBody);
-                var i = deSerialized.AllFoods;
-                return View(deSerialized.AllFoods);
+                if(deSerialized != null)
+                {
+                    
+                    return View(deSerialized.AllFoods);
+                }
+                return View();
             }
             
         }
 
-        
+        [HttpPost]
+        public IActionResult NewSearch(IFormCollection collection)
+        {
+            TempData["newSearch"] = collection["SearchBar"];
+            if (TempData != null)
+            {
+                var text = TempData["newSearch"].ToString();
+                return RedirectToAction("Index",new {searchText= text });
+            }
+            return RedirectToAction("Index");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
