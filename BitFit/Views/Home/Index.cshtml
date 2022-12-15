@@ -25,10 +25,10 @@
                 <pre class="mermaid">
             pie
             title @item.Name.
-            "Protein" : @item.Protein
-            "Sugar" : @item.Sugar
-            "Fiber" : @item.Fiber
-            "Fats" :  @item.FatTotal
+                    "Protein" : @item.Protein.ToString().Replace(",", ".")
+            "Sugar" : @item.Sugar.ToString().Replace(",", ".")
+                "Fiber" : @item.Fiber.ToString().Replace(",", ".")
+                "Fats" :  @item.FatTotal.ToString().Replace(",", ".")
         </pre>
         <div class="healthRating">HealthRating: </div>
         </div>
