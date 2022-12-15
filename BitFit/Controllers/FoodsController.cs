@@ -2,33 +2,33 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Dynamic;
+
 
 namespace BitFit.Controllers
 {
-    public class HomeController : Controller
+    public class FoodsController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        
+        private readonly ILogger<FoodsController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public FoodsController(ILogger<FoodsController> logger)
         {
             _logger = logger;
         }
-
-        public async Task<IActionResult> IndexAsync()
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
+        public async Task<IActionResult> IndexAsync(string searchText=null)
         {
-
-            var data = await GetSampleDataAsync();
-            return View(data.AllFoods);             
-        }
-
-        private async Task<IFood> GetSampleDataAsync()
-        {
-            string sample = "banana and bread and fish";
+            
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
+
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://api.calorieninjas.com/v1/nutrition?query={sample}"),
+                RequestUri = new Uri($"https://api.calorieninjas.com/v1/nutrition?query={searchText}"),
                 Headers =
             {
                 { "X-Api-Key", "Psij6QAOOFNwBBxyV91U4w==n1GEtDahReZRqJfI" },
@@ -38,15 +38,28 @@ namespace BitFit.Controllers
             {
                 response.EnsureSuccessStatusCode();
                 var responseBody = await response.Content.ReadAsStringAsync();
-
+                
                 var deSerialized = JsonConvert.DeserializeObject<IFood>(responseBody);
-                return deSerialized;
+                if(deSerialized != null)
+                {
+                    
+                    return View(deSerialized.AllFoods);
+                }
+                return View();
             }
+            
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult NewSearch(IFormCollection collection)
         {
-            return View();
+            TempData["newSearch"] = collection["SearchBar"];
+            if (TempData != null)
+            {
+                var text = TempData["newSearch"].ToString();
+                return RedirectToAction("Index",new {searchText= text });
+            }
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

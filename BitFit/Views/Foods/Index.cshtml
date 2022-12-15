@@ -1,0 +1,67 @@
+﻿@model List<Food>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    
+*@
+@{
+  
+    
+}
+
+
+
+<h3>
+    
+   
+    <form method="post" asp-controller="Foods" asp-action="NewSearch">
+        <label for="SearchBar" class="mb-5 mt-5">
+            Search food by name:
+        </label>
+        <input id="SearchBar" name="SearchBar" type="text" class="form-control" />
+        <input  type="submit" hidden />
+    </form>
+    
+</h3>
+
+<div class="foodCard mt-5">
+    <table class="table">
+        <tr class="navbar-dark">
+                <td>
+                        Name
+                </td>
+                <td>
+                        Protein
+                </td>
+                    <td>
+                        Sugar
+                    </td>
+                    <td>
+                        Fiber
+                </td>
+                <td>
+                        FatTotal
+                </td>
+            </tr>
+    @foreach (var item in Model)
+    {       
+          <tr>
+              <td>
+                    @item.Name
+              </td>
+              <td>
+                    @item.Protein g
+              </td>
+              <td>
+                    @item.Sugar g
+              </td>
+              <td>
+                  @item.Fiber g
+              </td>
+              <td>
+                    @item.FatTotal g
+              </td>
+          </tr>      
+    }
+     </table>
+    </div>
