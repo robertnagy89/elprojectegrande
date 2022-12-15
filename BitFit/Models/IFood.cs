@@ -4,7 +4,7 @@ namespace BitFit.Models
 {
     public class IFood
     {
-        [JsonProperty("foods")]
+        [JsonProperty("items")]
         public List<Food> AllFoods = new List<Food>();
     }
 }

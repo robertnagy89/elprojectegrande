@@ -11,10 +11,10 @@
     <h1 class="display-4">Welcome To Biceps.Core</h1>
     <p>Many Thanks to <a href="https://calorieninjas.com/api">CalorieNinja</a> for dilligently collecting all that sweet nutritional data.</p>
     <h1 class="sampleData"> Sample Data of what you can expect!</h1>
-    <div class="foodCard">
+    <div class="foodContainer">
     @foreach (var item in Model)
     {
-        <div class="foodvenn">
+        <div class="foodCard">
                 <pre class="mermaid">
             pie showData
         title : @item.Name
