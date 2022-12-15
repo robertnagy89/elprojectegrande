@@ -16,12 +16,22 @@ namespace BitFit.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
+            var data = await GetSampleDataAsync();
+            if (data == null)
+            {
+                return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            }
+            return View(data.AllFoods);
+        }
+
+        private async Task<IFood> GetSampleDataAsync()
+        {
             var url = "https://getpantry.cloud/apiv1/pantry/1899cfa8-43b1-4e43-a87a-7e5385f2def1/basket/foods";
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync(url);
             string responseBody = await response.Content.ReadAsStringAsync();
             var deSerialized = JsonConvert.DeserializeObject<IFood>(responseBody);
-            return View(deSerialized.AllFoods);
+            return deSerialized;
         }
 
         public IActionResult Privacy()
