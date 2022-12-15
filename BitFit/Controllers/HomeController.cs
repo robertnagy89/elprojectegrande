@@ -23,7 +23,7 @@ namespace BitFit.Controllers
 
         private async Task<IFood> GetSampleDataAsync()
         {
-            string sample = "banana and bread and fish";
+            string sample = "coffee and bread and chicken";
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
