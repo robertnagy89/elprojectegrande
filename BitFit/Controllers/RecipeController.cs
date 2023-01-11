@@ -14,26 +14,25 @@ namespace BitFit.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> RecipesAsync()
+        public async Task<IActionResult> RecipesAsync(string searchText = "Chicken")
         {
-            var query = "mushroom risotto";
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
 
                 Method = HttpMethod.Get, 
-                RequestUri= new Uri("https://api.calorieninjas.com/v1/recipe?query=mushroom_risotto"),
+                RequestUri= new Uri($"https://api.api-ninjas.com/v1/recipe?query={searchText}"),
                 Headers =
                 {
-                    { "X-Api-Key", "rjMn+tsZm073LSFbqMeumg==ItLY0mBRQJjLEYno" },
+                    { "X-Api-Key", "rjMn+tsZm073LSFbqMeumg==tUY5fuxhyNZqNik8" },
                 },
             };
             using var response = await client.SendAsync(request);
             response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync();
 
-            var deSerialized = JsonConvert.DeserializeObject<IRecipe>(responseBody);
-            return View(deSerialized.AllRecipes);
+            var deSerialized = JsonConvert.DeserializeObject<List<Recipe>>(responseBody);
+            return View(deSerialized);
         }
 
 
@@ -41,6 +40,18 @@ namespace BitFit.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        public IActionResult NewSearch(IFormCollection collection)
+        {
+            TempData["newSearch"] = collection["SearchBar"];
+            if (TempData != null)
+            {
+                var text = TempData["newSearch"].ToString();
+                return RedirectToAction("Recipes", new { searchText = text });
+            }
+            return RedirectToAction("Recipes");
         }
     }
 }

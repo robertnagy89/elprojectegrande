@@ -3,7 +3,20 @@
 @{
     ViewData["Title"] = "Recipe";
 }
-<h2>Recipes:</h2>
+<h3>
+
+
+    <form method="post" asp-controller="Recipe" asp-action="NewSearch">
+        <label for="SearchBar" class="mb-5 mt-5">
+            Search recipe by name:
+        </label>
+        <input id="SearchBar" name="SearchBar" type="text" class="form-control" />
+        <input type="submit" hidden />
+    </form>
+
+</h3>
+
+
 <div class="card">
 @foreach (var item in Model)
              {
